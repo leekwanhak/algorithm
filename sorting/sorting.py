@@ -5,7 +5,7 @@ def insertion_sort(arr):
         key = arr[i]  # 현재 원소를 key에 저장
 
         # 정렬되어있는 배열에서 key값과 비교 후 보다 큰 원소들을 한 칸씩 오른쪽으로 이동
-        j = i - 1
+        j = i - 1 
         while j >= 0 and arr[j] > key:
             arr[j + 1] = arr[j]  # key값보다 큰 원소를 오른쪽으로 이동
             j -= 1
@@ -31,6 +31,7 @@ def merge(arr, p, q, r):
     # 배열을 두 부분으로 나누기
     n1 = q - p + 1
     n2 = r - q
+    # 임시 배열 생성
     L = [0] * (n1 + 1)
     R = [0] * (n2 + 1)
 
@@ -47,7 +48,7 @@ def merge(arr, p, q, r):
     i = 0
     j = 0
     
-    # 임시 배열을 다시 A[p..r]에 병합
+    # 임시 배열을 arr[p..r]에 병합
     for k in range(p, r + 1):
         if L[i] <= R[j]:
             arr[k] = L[i]
@@ -58,6 +59,8 @@ def merge(arr, p, q, r):
     
     
 # Combining insertion sort and merge sort
+# 병합정렬 따르다가 k=5를 기준으로 삽입정렬을 수행
+# 삽입정렬 최악의 복잡도를 피하기 위해 k=5로 설정
 def merge_insertion_sort(arr, k=5):
     if len(arr) <= k:
         return insertion_sort(arr)
@@ -94,6 +97,6 @@ def main():
         f.write(" ".join(map(str, merge_sorted)) + "\n")
         f.write(" ".join(map(str, merge_insertion_sorted)) + "\n")
     
-    
+# main 함수 호출
 if __name__ == "__main__":
     main()
