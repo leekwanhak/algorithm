@@ -1,4 +1,4 @@
-# insertion sort
+# insertion sorting
 def insertion_sort(arr):
     # 1~len(arr)까지 반복
     for i in range(1, len(arr)):
@@ -13,8 +13,7 @@ def insertion_sort(arr):
         arr[j + 1] = key
     return arr
 
-
-# merge sort 1
+# merge sorting
 # merge sort 함수
 def merge_sort(arr, p, r):
     if p < r:
@@ -35,20 +34,20 @@ def merge(arr, p, q, r):
     L = [0] * (n1 + 1)
     R = [0] * (n2 + 1)
 
-    # Copy data to temporary arrays L[] and R[]
+    # 임시 배열 L[]과 R[]에 데이터를 복사
     for i in range(n1):
         L[i] = arr[p + i]
     for j in range(n2):
         R[j] = arr[q + 1 + j]
-
-    # Sentinel values to mark the end of each array
+    
+    # 각 배열의 끝을 표시하기 위한 센티넬 값
     L[n1] = float('inf')
     R[n2] = float('inf')
-
+    
     i = 0
     j = 0
-
-    # Merge the temporary arrays back into A[p..r]
+    
+    # 임시 배열을 다시 A[p..r]에 병합
     for k in range(p, r + 1):
         if L[i] <= R[j]:
             arr[k] = L[i]
@@ -56,8 +55,8 @@ def merge(arr, p, q, r):
         else:
             arr[k] = R[j]
             j += 1
-
-
+    
+    
 # Combining insertion sort and merge sort
 def merge_insertion_sort(arr, k=5):
     if len(arr) <= k:
@@ -65,36 +64,36 @@ def merge_insertion_sort(arr, k=5):
     else:
         merge_sort(arr, 0, len(arr) - 1)
     return arr
-
-
-# Main function to read input and write output
+    
+    
+# 입력을 읽고 출력을 쓰는 메인 함수
 def main():
-    # Read input from 'input.txt'
+    # 'input.txt'에서 입력을 읽음
     with open('input.txt', 'r') as f:
-        n = int(f.readline().strip())  # Read the length of the array
-        arr = list(map(int, f.readline().strip().split()))  # Read the array elements
-
-    # Apply insertion sort
+        n = int(f.readline().strip())  # 배열의 길이를 읽음
+        arr = list(map(int, f.readline().strip().split()))  # 배열 요소를 읽음
+    
+    # 삽입 정렬 적용
     insertion_sorted = arr[:]
     insertion_sort(insertion_sorted)
     print("insertion sorting done")
-
-    # Apply merge sort
+    
+    # 병합 정렬 적용
     merge_sorted = arr[:]
     merge_sort(merge_sorted, 0, len(merge_sorted) - 1)
     print("merge sorting done")
-
-    # Apply merge-insertion sort
+    
+    # 병합-삽입 정렬 적용
     merge_insertion_sorted = arr[:]
     merge_insertion_sort(merge_insertion_sorted)
     print("merge-insertion sorting done")
-
-    # Write the results to 'output.txt'
+    
+    # 결과를 'output.txt'에 씁니다.
     with open('output.txt', 'w') as f:
         f.write(" ".join(map(str, insertion_sorted)) + "\n")
         f.write(" ".join(map(str, merge_sorted)) + "\n")
         f.write(" ".join(map(str, merge_insertion_sorted)) + "\n")
-
-
+    
+    
 if __name__ == "__main__":
     main()
