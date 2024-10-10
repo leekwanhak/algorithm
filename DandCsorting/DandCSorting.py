@@ -67,7 +67,7 @@ def main():
     
     # Naive quick sort 적용
     quick_sorted = arr[:]
-    quicksort(quick_sorted)
+    quicksort(quick_sorted, 0, len(quick_sorted) - 1)
     print("quick sorting done")
     
     # Randomized quick sort 적용
@@ -77,10 +77,10 @@ def main():
     
     # Median-of-3 quick sort 적용
     median_of_three_quicksorted = arr[:]
-    median_of_three_quicksort(median_of_three_quicksorted)
-    print("median_of_three qicksorting done")
+    median_of_three_quicksort(median_of_three_quicksorted, 0, len(median_of_three_quicksorted) - 1)
+    print("median_of_three quick sorting done")
     
-    # 결과를 'output.txt'에 씁니다.
+    # 결과를 'output.txt'에 씀
     with open('output.txt', 'w') as f:
         f.write(" ".join(map(str, quick_sorted)) + "\n")
         f.write(" ".join(map(str, randomized_quicksorted)) + "\n")
